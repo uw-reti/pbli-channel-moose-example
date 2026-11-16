@@ -1,0 +1,9 @@
+/run/
+__pycache__/
+
+# Local snapshots and generated inputs from the original comparison.
+/inputs/*.xml
+/inputs/*.e
+/results/*.h5
+/results/*.e
+/plots/channel_difference_xy_relative_k6.png
