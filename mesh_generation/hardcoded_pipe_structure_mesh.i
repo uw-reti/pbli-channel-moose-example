@@ -1,14 +1,14 @@
-# RAFM structure + coolant meshes (meters). Generate: ./generate_meshes.sh
+# RAFM structure + coolant meshes (meters). Generate: generate_geometry_mesh.py
 # Products in cardinal/:
-#   tally_domain_in.e      — steel + coarse heating + fine tritium (openmc.i)
-#   pipe_structure_mesh.e  — steel + coarse heating only (--mesh-only)
+#   tally_domain_in.e      — structure + coarse + fine coolant (openmc.i)
+#   pipe_structure_mesh.e  — structure + coarse coolant only (--mesh-only)
 # Coarse/fine coolant blocks overlap; restrict every tally by block.
-# Coolant and steel do not share interface nodes.
+# Coolant and structure do not share interface nodes.
 
 [Mesh]
   allow_renumbering = false
 
-  # Full outer pipe box (1 cm x 2 cm x 1 cm steel cells).
+  # Full outer pipe box (1 cm x 2 cm x 1 cm structure cells).
   [pipe]
     type = GeneratedMeshGenerator
     dim = 3
@@ -42,7 +42,7 @@
     top_right = '0.26 0.50 0.16'
   []
 
-  # Delete tagged channel cells so steel has voids for coolant meshes.
+  # Delete tagged channel cells so structure has voids for coolant meshes.
   [structure]
     type = BlockDeletionGenerator
     input = right_channel
@@ -50,7 +50,7 @@
   []
 
   # Coarse left channel for heating (1 x 25 x 1).
-  [left_heating]
+  [left_coarse]
     type = GeneratedMeshGenerator
     dim = 3
     xmin = 0.04
@@ -66,7 +66,7 @@
   []
 
   # Coarse right channel for heating (1 x 25 x 1).
-  [right_heating]
+  [right_coarse]
     type = GeneratedMeshGenerator
     dim = 3
     xmin = 0.18
@@ -82,7 +82,7 @@
   []
 
   # Fine left channel for tritium (5 x 25 x 6).
-  [left_tritium]
+  [left_fine]
     type = GeneratedMeshGenerator
     dim = 3
     xmin = 0.04
@@ -98,7 +98,7 @@
   []
 
   # Fine right channel for tritium (4 x 25 x 6).
-  [right_tritium]
+  [right_fine]
     type = GeneratedMeshGenerator
     dim = 3
     xmin = 0.18
@@ -113,13 +113,14 @@
     subdomain_ids = 6
   []
 
-  # Join steel + heating + tritium (still numeric block IDs).
+  # Join structure + coarse + fine (still numeric block IDs).
   [assemble]
     type = MeshCollectionGenerator
-    inputs = 'structure left_heating right_heating left_tritium right_tritium'
+    inputs = 'structure left_coarse right_coarse left_fine right_fine'
   []
 
-  # Name blocks and write tally_domain_in.e for openmc.i.
+  # Name blocks for openmc.i and write tally_domain_in.e.
+  # Coarse → left_channel/right_channel; fine → left_tritium/right_tritium.
   [tally_domain]
     type = RenameBlockGenerator
     input = assemble
@@ -128,7 +129,7 @@
     output = true
   []
 
-  # Drop fine tritium from the final mesh; names on the rest are kept.
+  # Drop fine coolant from the final mesh; names on the rest are kept.
   [heating_domain]
     type = BlockDeletionGenerator
     input = tally_domain
