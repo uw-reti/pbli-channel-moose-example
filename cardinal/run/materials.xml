@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<materials>
+  <material id="1" name="air">
+    <density value="0.001205" units="g/cm3"/>
+    <nuclide name="C12" ao="0.000148583129"/>
+    <nuclide name="C13" ao="1.60703476e-06"/>
+    <nuclide name="N14" ao="0.781575372"/>
+    <nuclide name="N15" ao="0.00285532775"/>
+    <nuclide name="O16" ao="0.210235865"/>
+    <nuclide name="O17" ao="8.00842335e-05"/>
+    <nuclide name="O18" ao="0.000432033365"/>
+    <nuclide name="Ar36" ao="1.55828794e-05"/>
+    <nuclide name="Ar38" ao="2.93813883e-06"/>
+    <nuclide name="Ar40" ao="0.0046526059"/>
+  </material>
+  <material id="2" name="Eurofer97">
+    <density value="7.75" units="g/cm3"/>
+    <nuclide name="C12" wo="0.0011545"/>
+    <nuclide name="C13" wo="1.3531e-05"/>
+    <nuclide name="V50" wo="4.9454e-06"/>
+    <nuclide name="V51" wo="0.0020126"/>
+    <nuclide name="Cr52" wo="0.0791"/>
+    <nuclide name="Cr53" wo="0.009142"/>
+    <nuclide name="Cr54" wo="0.0023186"/>
+    <nuclide name="Fe56" wo="0.86988"/>
+    <nuclide name="Fe57" wo="0.020449"/>
+    <nuclide name="Fe58" wo="0.002769"/>
+    <nuclide name="Ta180" wo="1.7755e-07"/>
+    <nuclide name="Ta181" wo="0.0014864"/>
+    <nuclide name="W182" wo="0.0030634"/>
+    <nuclide name="W183" wo="0.0016634"/>
+    <nuclide name="W184" wo="0.003581"/>
+    <nuclide name="W186" wo="0.0033589"/>
+  </material>
+  <material id="3" name="lead_83_lithium_17">
+    <density value="9965" units="kg/m3"/>
+    <nuclide name="Li6" ao="1.1775000000000002"/>
+    <nuclide name="Li7" ao="14.522500000000003"/>
+    <nuclide name="Pb204" ao="1.1802"/>
+    <nuclide name="Pb206" ao="20.3163"/>
+    <nuclide name="Pb207" ao="18.6303"/>
+    <nuclide name="Pb208" ao="44.1732"/>
+  </material>
+</materials>
