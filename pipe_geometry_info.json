@@ -1,0 +1,31 @@
+{
+  "_diagram": [
+    "Cross-section looking along y. Dimensions are in cm.",
+    "                         +z (up)",
+    "                          ^",
+    "   +-------------------------------------------+",
+    "   |             top_wall_thickness            |",
+    "   |     +-------------+   +-------------+     |",
+    "   |     | Left        |   | Right       |     |",
+    "   |     | channel     |   | channel     |     |  --> +x",
+    "   |     +-------------+   +-------------+     |",
+    "   |           bottom_wall_thickness           |",
+    "   +-------------------------------------------+",
+    "     left wall          ^                  right wall",
+    "                        divider",
+    "Along x: left wall + left channel width + divider + right channel width + right wall.",
+    "Along z: bottom wall + channel height + top wall.",
+    "Along y: channel_flow_length, shared by the pipe and both channels."
+  ],
+  "structure_material": "RAFM steel",
+  "coolant_material": "PbLi",
+  "left_channel_width": 10,
+  "right_channel_width": 8,
+  "channel_flow_length": 50,
+  "channel_height": 12,
+  "left_wall_thickness": 4,
+  "right_wall_thickness": 2,
+  "bottom_wall_thickness": 4,
+  "top_wall_thickness": 4,
+  "divider_thickness": 4
+}
